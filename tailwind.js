@@ -3,10 +3,6 @@ module.exports = {
   important: false,
   separator: ':',
   theme: {
-    container: {
-      center: true,
-      padding:'0px 30px',
-    },
     screens: {
       sm: '640px',
       md: '768px',
