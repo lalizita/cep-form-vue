@@ -59,16 +59,20 @@
       </div>
       <div class="mb-4">
         <button 
+        @click="handleSubmit"
         class="w-full bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
         >
         Enviar
         </button>
       </div>
     </div>
+    {{ data }}
   </div>
 </template>
 
 <script>
+import Vue from 'vue'
+import Vuelidate from 'vuelidate'
 import { required } from 'vuelidate/lib/validators'
 
 export default {
@@ -81,7 +85,8 @@ export default {
         uf: "",
         localidade: "",
         numero: ""
-      }
+      },
+      submitData:'',
     };
   },
   validations: {
@@ -117,7 +122,13 @@ export default {
           numero: ""
         };
       }
+    },
+    handleSubmit() {
+      this.submitData = this.address
     }
   }
 };
+
+Vue.use(Vuelidate)
+
 </script>
