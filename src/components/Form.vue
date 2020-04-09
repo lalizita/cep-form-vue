@@ -4,14 +4,20 @@
     <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
       <div class="mb-4">
         <label class="block text-gray-700 text-sm font-bold mb-2" for="cep">Cep</label>
+          <!-- border-red-500: !$v.address.cep.required -->
         <input
           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          :class="{
+          'border-red-500' : !$v.address.cep.required 
+          }"
           type="text"
           id="cep"
           placeholder="Cep"
           @keyup="validateCEP"
+          style="height:72px"
           v-model="address.cep"
         />
+        <div class="text-red-500" v-if="!$v.address.cep.required">Field is required</div>
       </div>
 
       <div class="mb-4">
@@ -21,6 +27,7 @@
           type="text"
           id="logradouro"
           placeholder="logradouro"
+          style="height:72px"
           v-model="address.logradouro"
         />
       </div>
@@ -32,6 +39,7 @@
           type="text"
           id="uf"
           placeholder="uf"
+          style="height:72px"
           v-model="address.uf"
         />
       </div>
@@ -43,6 +51,7 @@
           type="text"
           id="cidade"
           placeholder="cidade"
+          style="height:72px"
           v-model="address.localidade"
         />
       </div>
@@ -54,6 +63,7 @@
           type="text"
           id="numero"
           placeholder="numero"
+          style="height:72px"
           v-model="address.numero"
         />
       </div>
@@ -61,20 +71,18 @@
         <button 
         @click="handleSubmit"
         class="w-full bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+        style="height:72px"
         >
         Enviar
         </button>
       </div>
     </div>
-    {{ data }}
+    <!-- {{ submitData }} -->
   </div>
 </template>
 
 <script>
-import Vue from 'vue'
-import Vuelidate from 'vuelidate'
 import { required } from 'vuelidate/lib/validators'
-
 export default {
   name: "Form",
   data() {
@@ -93,11 +101,11 @@ export default {
     address : {
       cep: {
         required,
-        async isUnique (value) {
-          if (value === '') return true
-          const response = await fetch(`https://viacep.com.br/ws/${value.trim()}/json/`)
-          return Boolean(await response.json())
-        }
+        // async isUnique (value) {
+          // if (value === '') return true
+          // const response = await fetch(`https://viacep.com.br/ws/${value.trim()}/json/`)
+          // return Boolean(await response.json())
+        // }
       }
     }
   },
@@ -128,7 +136,5 @@ export default {
     }
   }
 };
-
-Vue.use(Vuelidate)
 
 </script>
