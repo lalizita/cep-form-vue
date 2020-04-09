@@ -1,6 +1,4 @@
-import { storiesOf } from '@storybook/vue';
-import { linkTo } from '@storybook/addon-links';
-
+import '@/assets/css/tailwind.css'
 import CustomInput from '@/components/CustomInput/CustomInput.vue';
 
 export default{

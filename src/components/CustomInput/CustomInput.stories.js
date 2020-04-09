@@ -1,7 +1,13 @@
 import Vue from 'vue';
-import CustomInput from '@/coponents/CustomInput/CustomInput.vue';
+import CustomInput from '@/components/CustomInput/CustomInput.vue';
 
-export const asAComponent = () => ({
+
+export default{
+  title: 'CustomInputInside components directory',
+  component: '<CustomInput />'
+};
+
+export const Text = () => ({
   components: { CustomInput },
-  template: '<CustomInput />'
+  template: '<h1>Hello Button <CustomInput /></h1>',
 });
